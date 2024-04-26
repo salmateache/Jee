@@ -10,9 +10,9 @@ import java.sql.DriverManager;
 public class DB {
     public static Connection con = null;
     public static void Loadconnection(){
-        String url = "jdbc:mysql://localhost:3306/jeeprojet";
+        String url = "jdbc:mysql://localhost:3307/jeeprojet";
         String user = "root";
-        String mdp = "";
+        String mdp = "root";
         try{
             con = (Connection) DriverManager.getConnection(url ,user ,mdp);
             if(con != null){
