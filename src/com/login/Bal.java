@@ -17,7 +17,7 @@ import java.sql.ResultSet;
  * @author hp
  */
 public class Bal {
-    public static void insertdatasignup(Bean obj){
+    public static void insertdatasignup(Bean obj ){
         
         try{
          
