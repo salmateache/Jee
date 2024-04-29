@@ -8,6 +8,7 @@ package com.login;
  *
  * @author hp
  */
+
 public class signupframe extends javax.swing.JFrame {
 
     /**
@@ -36,11 +37,11 @@ public class signupframe extends javax.swing.JFrame {
         jPanel5 = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jPasswordField1 = new javax.swing.JPasswordField();
+        jTextFieldtelephone = new javax.swing.JTextField();
+        jPasswordFieldmdp = new javax.swing.JPasswordField();
         jButton1 = new javax.swing.JButton();
-        jTextField2 = new javax.swing.JTextField();
-        jTextField3 = new javax.swing.JTextField();
+        jTextFieldemail = new javax.swing.JTextField();
+        jTextFieldcin = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         jButton2 = new javax.swing.JButton();
@@ -80,39 +81,44 @@ public class signupframe extends javax.swing.JFrame {
         jLabel6.setText("Phone number: ");
         jPanel5.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 130, -1, -1));
 
-        jTextField1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 153, 204)));
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+        jTextFieldtelephone.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 153, 204)));
+        jTextFieldtelephone.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+                jTextFieldtelephoneActionPerformed(evt);
             }
         });
-        jPanel5.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 140, 200, -1));
+        jPanel5.add(jTextFieldtelephone, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 140, 200, -1));
 
-        jPasswordField1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 153, 255)));
-        jPanel5.add(jPasswordField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 190, 200, -1));
+        jPasswordFieldmdp.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 153, 255)));
+        jPanel5.add(jPasswordFieldmdp, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 190, 200, -1));
 
         jButton1.setBackground(new java.awt.Color(0, 153, 255));
         jButton1.setFont(new java.awt.Font("Segoe UI", 3, 14)); // NOI18N
         jButton1.setForeground(new java.awt.Color(255, 255, 255));
         jButton1.setText("Signup");
         jButton1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
         jPanel5.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 230, 50, -1));
 
-        jTextField2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 153, 204)));
-        jTextField2.addActionListener(new java.awt.event.ActionListener() {
+        jTextFieldemail.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 153, 204)));
+        jTextFieldemail.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField2ActionPerformed(evt);
+                jTextFieldemailActionPerformed(evt);
             }
         });
-        jPanel5.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 40, 200, -1));
+        jPanel5.add(jTextFieldemail, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 40, 200, -1));
 
-        jTextField3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 153, 204)));
-        jTextField3.addActionListener(new java.awt.event.ActionListener() {
+        jTextFieldcin.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 153, 204)));
+        jTextFieldcin.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField3ActionPerformed(evt);
+                jTextFieldcinActionPerformed(evt);
             }
         });
-        jPanel5.add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 90, 200, -1));
+        jPanel5.add(jTextFieldcin, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 90, 200, -1));
 
         jLabel7.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(0, 153, 255));
@@ -163,23 +169,33 @@ public class signupframe extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+    private void jTextFieldtelephoneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldtelephoneActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
+    }//GEN-LAST:event_jTextFieldtelephoneActionPerformed
 
-    private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
+    private void jTextFieldemailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldemailActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField2ActionPerformed
+    }//GEN-LAST:event_jTextFieldemailActionPerformed
 
-    private void jTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField3ActionPerformed
+    private void jTextFieldcinActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldcinActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField3ActionPerformed
+    }//GEN-LAST:event_jTextFieldcinActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
   this.hide();
                         loginframe login = new loginframe() ;
                         login.show();        // TODO add your handling code here:
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+       String Email =  jTextFieldemail.getText();
+       String cin =  jTextFieldcin.getText();
+       String telephone =  jTextFieldtelephone.getText();
+       String mdp =  jPasswordFieldmdp.getText();
+       Bean b = new Bean(Email,cin,mdp,telephone);
+       Bal obj = new Bal();
+       obj.insertdatasignup(b);
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -230,9 +246,9 @@ public class signupframe extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
-    private javax.swing.JPasswordField jPasswordField1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
+    private javax.swing.JPasswordField jPasswordFieldmdp;
+    private javax.swing.JTextField jTextFieldcin;
+    private javax.swing.JTextField jTextFieldemail;
+    private javax.swing.JTextField jTextFieldtelephone;
     // End of variables declaration//GEN-END:variables
 }

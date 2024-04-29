@@ -3,7 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package com.database;
-import com.sun.jdi.connect.spi.Connection;
+import java.sql.Connection;
 import javax.swing.JOptionPane;
 import java.sql.DriverManager;
 
@@ -14,9 +14,9 @@ public class DB {
         String user = "root";
         String mdp = "";
         try{
-            con = (Connection) DriverManager.getConnection(url ,user ,mdp);
+            con = DriverManager.getConnection(url ,user,mdp);
             if(con != null){
-                  JOptionPane.showMessageDialog(null,"erreur");   
+                  JOptionPane.showMessageDialog(null,"Connexion réussie! ");   
             }
         }
         catch (Exception e ){

@@ -4,6 +4,7 @@
  */
 package com.login;
 
+import com.home.homeframe;
 import java.awt.Toolkit;
 
 /**
@@ -39,10 +40,10 @@ public class loginframe extends javax.swing.JFrame {
         jPanel5 = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jPasswordField1 = new javax.swing.JPasswordField();
+        jTextFieldemail = new javax.swing.JTextField();
+        jPasswordFieldmdp = new javax.swing.JPasswordField();
         jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        jButtonLOGIN = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -80,16 +81,16 @@ public class loginframe extends javax.swing.JFrame {
         jLabel6.setText("Email : ");
         jPanel5.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 60, -1, -1));
 
-        jTextField1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 153, 204)));
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+        jTextFieldemail.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 153, 204)));
+        jTextFieldemail.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+                jTextFieldemailActionPerformed(evt);
             }
         });
-        jPanel5.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 70, 200, -1));
+        jPanel5.add(jTextFieldemail, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 70, 200, -1));
 
-        jPasswordField1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 153, 255)));
-        jPanel5.add(jPasswordField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 130, 200, -1));
+        jPasswordFieldmdp.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 153, 255)));
+        jPanel5.add(jPasswordFieldmdp, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 130, 200, -1));
 
         jButton1.setBackground(new java.awt.Color(0, 153, 255));
         jButton1.setFont(new java.awt.Font("Segoe UI", 3, 14)); // NOI18N
@@ -103,12 +104,17 @@ public class loginframe extends javax.swing.JFrame {
         });
         jPanel5.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 230, 50, -1));
 
-        jButton2.setBackground(new java.awt.Color(0, 153, 255));
-        jButton2.setFont(new java.awt.Font("Segoe UI", 3, 14)); // NOI18N
-        jButton2.setForeground(new java.awt.Color(255, 255, 255));
-        jButton2.setText("login");
-        jButton2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        jPanel5.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 230, 50, -1));
+        jButtonLOGIN.setBackground(new java.awt.Color(0, 153, 255));
+        jButtonLOGIN.setFont(new java.awt.Font("Segoe UI", 3, 14)); // NOI18N
+        jButtonLOGIN.setForeground(new java.awt.Color(255, 255, 255));
+        jButtonLOGIN.setText("login");
+        jButtonLOGIN.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jButtonLOGIN.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonLOGINActionPerformed(evt);
+            }
+        });
+        jPanel5.add(jButtonLOGIN, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 230, 50, -1));
 
         jPanel1.add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 90, 380, 280));
 
@@ -118,9 +124,9 @@ public class loginframe extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+    private void jTextFieldemailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldemailActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
+    }//GEN-LAST:event_jTextFieldemailActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
                         this.hide();
@@ -128,6 +134,19 @@ public class loginframe extends javax.swing.JFrame {
                         signup.show();
 // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButtonLOGINActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLOGINActionPerformed
+String email =  jTextFieldemail.getText();
+String mdp =  jPasswordFieldmdp.getText();
+Bal obj = new Bal();
+boolean b =obj.checklogin(email,mdp);
+if(b){
+    this.hide();
+                        homeframe home = new homeframe() ;
+                        home.show();
+}
+// TODO add your handling code here:
+    }//GEN-LAST:event_jButtonLOGINActionPerformed
 
     /**
      * @param args the command line arguments
@@ -166,7 +185,7 @@ public class loginframe extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButtonLOGIN;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -176,7 +195,7 @@ public class loginframe extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
-    private javax.swing.JPasswordField jPasswordField1;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JPasswordField jPasswordFieldmdp;
+    private javax.swing.JTextField jTextFieldemail;
     // End of variables declaration//GEN-END:variables
 }
