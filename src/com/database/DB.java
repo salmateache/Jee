@@ -16,7 +16,7 @@ public class DB {
         try{
             con = DriverManager.getConnection(url ,user,mdp);
             if(con != null){
-                 JOptionPane.showMessageDialog(null,"Connexion réussie! ");  
+                  JOptionPane.showMessageDialog(null,"Connexion réussie! ");   
             }
         }
         catch (Exception e ){
