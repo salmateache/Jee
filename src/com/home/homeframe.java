@@ -396,7 +396,23 @@ public class homeframe extends javax.swing.JFrame {
     }//GEN-LAST:event_clearActionPerformed
 
     private void updateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateActionPerformed
-        // TODO add your handling code here:
+      int row = jTable1.getSelectedRow();
+      if(row<0){
+      JOptionPane.showMessageDialog(null,"please select a row from the table");
+      }
+      else{
+          int id = (int) jTable1.getValueAt(row,0);
+          homeBal Home=new homeBal();
+    String texte = text.getText(); 
+    String file = fileimg.getText();
+    Date temps = date.getDate();
+    homeBal B = new homeBal();
+    homeBean bean = new homeBean(id,texte,temps,0,file);
+    homeBal bal= new homeBal();
+    bal.Update(bean);
+    load();
+      }
+
     }//GEN-LAST:event_updateActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
@@ -411,6 +427,8 @@ JFileChooser fo = new JFileChooser();
         fileimg.setText(filepath);
     }//GEN-LAST:event_btnSelectActionPerformed
 
+
+   
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
       int row = jTable1.getSelectedRow();
       if(row<0){

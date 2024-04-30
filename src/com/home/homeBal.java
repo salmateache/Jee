@@ -83,10 +83,34 @@ public class homeBal {
             JOptionPane.showMessageDialog(null,"erreur"+e);
         /* */}
     }
+    public static void Update(homeBean bean){
+        
+            try  {
+String sql = "UPDATE poste SET id_poste = ? , texte = ?, date = ?, chemin_image = ? WHERE id_poste = ?";
+
+PreparedStatement preparedStatement = con.prepareStatement(sql);
+                // Remplacez les paramètres de la requête par les valeurs de l'objet homeBean
+                preparedStatement.setInt(1,bean.getId_poste());
+              preparedStatement.setString(2,bean.getTexte());
+             preparedStatement.setObject(3,bean.getDate());
+            preparedStatement.setString(4,bean.getChemin_img());
+            preparedStatement.setInt(5,bean.getId_poste());
+
+                
+                // Exécutez la requête SQL
+              preparedStatement.executeUpdate();
+                        JOptionPane.showMessageDialog(null,"poste est  modifié avec succés");
+             
+            
+        }        catch (Exception e ){
+            JOptionPane.showMessageDialog(null,"erreur"+e);
+        /* */}           
+        
+    }
     public static homeBean returnRow(int id) {
     homeBean bean=null;
                         try{
-                            String query = "SELECT * FROM poste WHERE id= "+id;
+                            String query = "SELECT * FROM poste WHERE id_poste= "+id;
                             PreparedStatement preparedStatement = con.prepareStatement(query);
                                ResultSet resultSet = preparedStatement.executeQuery();
                                         while(resultSet.next()){
@@ -97,6 +121,7 @@ public class homeBal {
                                         String file = resultSet.getString("chemin_image");
                                         int id_poste =resultSet.getInt("id_poste");
                                         homeBean TT=new homeBean(id_poste,text,temps,ID,file);
+                                        return TT;
                                         }
                                 }
                     catch (Exception e ){
