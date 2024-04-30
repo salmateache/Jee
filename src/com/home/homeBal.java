@@ -83,6 +83,27 @@ public class homeBal {
             JOptionPane.showMessageDialog(null,"erreur"+e);
         /* */}
     }
+    public static homeBean returnRow(int id) {
+    homeBean bean=null;
+                        try{
+                            String query = "SELECT * FROM poste WHERE id= "+id;
+                            PreparedStatement preparedStatement = con.prepareStatement(query);
+                               ResultSet resultSet = preparedStatement.executeQuery();
+                                        while(resultSet.next()){
+                                       
+                                        String text = resultSet.getString("texte");
+                                        Date temps = resultSet.getDate("date");
+                                        int ID= resultSet.getInt("id_utilisateur");
+                                        String file = resultSet.getString("chemin_image");
+                                        int id_poste =resultSet.getInt("id_poste");
+                                        homeBean TT=new homeBean(id_poste,text,temps,ID,file);
+                                        }
+                                }
+                    catch (Exception e ){
+                            JOptionPane.showMessageDialog(null,"erreur"+e);
+                }
+                        return bean;
+}
 
 private static Bean utilisateurConnecte; // Variable statique pour stocker l'utilisateur connecté
 

@@ -44,7 +44,7 @@ public class homeframe extends javax.swing.JFrame {
   public void loadtable(List<homeBean> list) {
         DefaultTableModel dm = (DefaultTableModel) jTable1.getModel();
         dm.setRowCount(0);
-      String url = "jdbc:mysql://localhost:3307/jeeprojet";
+      String url = "jdbc:mysql://localhost:3306/jeeprojet";
         String user = "root";
         String mdp = "";
         try{
@@ -95,7 +95,6 @@ public class homeframe extends javax.swing.JFrame {
         menu1 = new java.awt.Menu();
         menu2 = new java.awt.Menu();
         jPanel1 = new javax.swing.JPanel();
-        jPanel2 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jButton6 = new javax.swing.JButton();
@@ -114,6 +113,7 @@ public class homeframe extends javax.swing.JFrame {
         date = new com.toedter.calendar.JDateChooser();
         jScrollPane3 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
+        jPanel2 = new javax.swing.JPanel();
 
         jMenu1.setText("jMenu1");
 
@@ -125,19 +125,6 @@ public class homeframe extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jPanel2.setBackground(new java.awt.Color(0, 153, 255));
-
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 73, Short.MAX_VALUE)
-        );
 
         jPanel3.setBackground(new java.awt.Color(0, 153, 255));
 
@@ -308,7 +295,7 @@ public class homeframe extends javax.swing.JFrame {
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(clear)
                     .addComponent(update))
-                .addContainerGap(28, Short.MAX_VALUE))
+                .addContainerGap(225, Short.MAX_VALUE))
         );
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
@@ -319,6 +306,11 @@ public class homeframe extends javax.swing.JFrame {
                 "id", "texte", "date", "utilisateur", "image"
             }
         ));
+        jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTable1MouseClicked(evt);
+            }
+        });
         jScrollPane3.setViewportView(jTable1);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -327,29 +319,41 @@ public class homeframe extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jScrollPane3)))
                 .addContainerGap())
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 571, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 339, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1080, 520));
+
+        jPanel2.setBackground(new java.awt.Color(0, 153, 255));
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 73, Short.MAX_VALUE)
+        );
+
+        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 670, 1074, -1));
 
         pack();
         setLocationRelativeTo(null);
@@ -378,20 +382,12 @@ public class homeframe extends javax.swing.JFrame {
     // Récupérer l'utilisateur connecté
     Bean utilisateurConnecte = B.getUtilisateurConnecte(); // Supposons que cette méthode récupère l'utilisateur connecté
     
-    // Vérifier si un utilisateur est connecté
-    if (utilisateurConnecte != null) {
-        // Si un utilisateur est connecté, récupérer son e-mail et créer un homeBean
-        int emailUtilisateurConnecte = B.Emailgetter(utilisateurConnecte); // Supposons que cette méthode récupère l'e-mail de l'utilisateur connecté
-        homeBean h = new homeBean(1, texte, temps, emailUtilisateurConnecte, file);
+
+        homeBean h = new homeBean(1, texte, temps, 1, file);
         
         // Insérer le homeBean dans la base de données
         B.insert(h);
-    } else {
-        // Si aucun utilisateur n'est connecté, gérer l'erreur ou afficher un message à l'utilisateur
-        System.out.println("Aucun utilisateur n'est connecté.");
-        // Affichez un message d'erreur à l'utilisateur ou effectuez toute autre action appropriée
-    }
-
+    
 
     }//GEN-LAST:event_addActionPerformed
 
@@ -414,6 +410,23 @@ JFileChooser fo = new JFileChooser();
         String filepath=imgfile.getAbsolutePath();
         fileimg.setText(filepath);
     }//GEN-LAST:event_btnSelectActionPerformed
+
+    private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
+      int row = jTable1.getSelectedRow();
+      if(row<0){
+      JOptionPane.showMessageDialog(null,"please select a row from the table");
+      }
+      else{
+          int id = (int) jTable1.getValueAt(row,0);
+          homeBal Home=new homeBal();
+          
+          homeBean Bean=Home.returnRow(id);
+          text.setText(Bean.getTexte());
+          date.setDate(Bean.getDate());
+          fileimg.setText(Bean.getChemin_img());
+      }
+              
+    }//GEN-LAST:event_jTable1MouseClicked
 
     /**
      * @param args the command line arguments
