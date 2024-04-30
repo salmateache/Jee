@@ -17,7 +17,7 @@ public class homeBean {
     private String chemin_img;
      private int id_poste ;
 
-    public homeBean(String texte, Date date, int id_utilisateurs, String chemin_img) {
+    public homeBean(int id_poste,String texte, Date date, int id_utilisateurs, String chemin_img) {
         this.texte = texte;
         this.date = date;
         this.id_utilisateurs = id_utilisateurs;

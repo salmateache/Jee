@@ -5,7 +5,8 @@
 package com.home;
 import com.database.DB;
 import static com.database.DB.con;
-import java.awt.List;
+import java.util.ArrayList;
+import java.util.List;
 import javax.swing.JOptionPane;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
@@ -13,7 +14,7 @@ import java.sql.Connection;
 import java.sql.Date;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
-import java.util.ArrayList;
+
 
 
 /**
@@ -22,27 +23,22 @@ import java.util.ArrayList;
  */
 public class homeBal {
 
-    /**
-     *
-     * @return
-     */
     public List<homeBean> Afficher(){
-        List<homeBean> L=new ArrayList<homeBean>();
+        List<homeBean> L =new ArrayList<homeBean>();
               try{
          
             String query = "SELECT * FROM poste";
             PreparedStatement preparedStatement = con.prepareStatement(query);
-
-
-            preparedStatement.executeUpdate();
+         
             ResultSet resultSet = preparedStatement.executeQuery();
-            System.out.println("poste inséré avec succès !");
+          
             while(resultSet.next()){
-                String text = resultSet.getTexte("text");
+                String text = resultSet.getString("texte");
                 Date temps = resultSet.getDate("date");
-                int id = resultSet.getId_utilisateurs("id_utilisateur");
-                String file = resultSet.getChemin_image("chemin_image");
-                homeBean TT=new homeBean(text,temps,id,file);
+                int id = resultSet.getInt("id_utilisateur");
+                String file = resultSet.getString("chemin_image");
+                int id_poste =resultSet.getInt("id_poste");
+                homeBean TT=new homeBean(id_poste,text,temps,id,file);
                 L.add(TT);
 
                 
@@ -85,5 +81,5 @@ public class homeBal {
         catch (Exception e ){
             JOptionPane.showMessageDialog(null,"erreur"+e);
         /* */}
-    }
+    }}
 
