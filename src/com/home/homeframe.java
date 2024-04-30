@@ -379,19 +379,12 @@ public class homeframe extends javax.swing.JFrame {
     Bean utilisateurConnecte = B.getUtilisateurConnecte(); // Supposons que cette méthode récupère l'utilisateur connecté
     
     // Vérifier si un utilisateur est connecté
-    if (utilisateurConnecte != null) {
-        // Si un utilisateur est connecté, récupérer son e-mail et créer un homeBean
-        int emailUtilisateurConnecte = B.Emailgetter(utilisateurConnecte); // Supposons que cette méthode récupère l'e-mail de l'utilisateur connecté
-        homeBean h = new homeBean(1, texte, temps, emailUtilisateurConnecte, file);
+
+        homeBean h = new homeBean(1, texte, temps, 1, file);
         
         // Insérer le homeBean dans la base de données
         B.insert(h);
-    } else {
-        // Si aucun utilisateur n'est connecté, gérer l'erreur ou afficher un message à l'utilisateur
-        System.out.println("Aucun utilisateur n'est connecté.");
-        // Affichez un message d'erreur à l'utilisateur ou effectuez toute autre action appropriée
-    }
-
+   
 
     }//GEN-LAST:event_addActionPerformed
 
