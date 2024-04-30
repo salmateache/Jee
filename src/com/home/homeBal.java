@@ -5,6 +5,7 @@
 package com.home;
 import com.database.DB;
 import static com.database.DB.con;
+import com.login.Bean;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
@@ -70,9 +71,9 @@ public class homeBal {
     public static void delete(homeBean B){
                 try{
          
-            String query = "DELETE FROM poste WHERE texte = ?";
+            String query = "DELETE FROM poste WHERE id = ?";
             PreparedStatement preparedStatement = con.prepareStatement(query);
-            preparedStatement.setString(1,B.getTexte());
+            preparedStatement.setInt(1,B.getId_poste());
             preparedStatement.executeUpdate();
 
           
@@ -81,5 +82,45 @@ public class homeBal {
         catch (Exception e ){
             JOptionPane.showMessageDialog(null,"erreur"+e);
         /* */}
-    }}
+    }
+
+private static Bean utilisateurConnecte; // Variable statique pour stocker l'utilisateur connecté
+
+    // Méthode pour définir l'utilisateur connecté
+    public static void setUtilisateurConnecte(Bean utilisateur) {
+        utilisateurConnecte = utilisateur;
+    }
+
+    // Méthode pour récupérer l'utilisateur connecté
+    public static Bean getUtilisateurConnecte() {
+        return utilisateurConnecte;
+    }
+    public static int Emailgetter(Bean B){
+        try{
+         
+            String query = "SELECT id FROM utilisateurs  WHERE id = ?";
+            PreparedStatement preparedStatement = con.prepareStatement(query);
+            preparedStatement.setInt(1,B.getId());
+           
+            try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                  
+                    if (resultSet.next()) {
+                      
+                        return resultSet.getInt("id_utilisateurs");
+                    } else {
+                      return 0;
+                    }
+                }
+            }
+            
+     
+        catch (Exception e ){
+            JOptionPane.showMessageDialog(null,"erreur"+e);
+        /* */}
+       return 0;
+    }
+
+
+
+}
 

@@ -192,7 +192,7 @@ public class signupframe extends javax.swing.JFrame {
        String cin =  jTextFieldcin.getText();
        String telephone =  jTextFieldtelephone.getText();
        String mdp =  jPasswordFieldmdp.getText();
-       Bean b = new Bean(Email,cin,mdp,telephone);
+       Bean b = new Bean(1,Email,cin,mdp,telephone);
        Bal obj = new Bal();
        obj.insertdatasignup(b);
     }//GEN-LAST:event_jButton1ActionPerformed

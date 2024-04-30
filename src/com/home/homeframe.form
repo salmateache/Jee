@@ -448,7 +448,7 @@
                     <Column editable="true" title="id" type="java.lang.Object"/>
                     <Column editable="true" title="texte" type="java.lang.Object"/>
                     <Column editable="true" title="date" type="java.lang.Object"/>
-                    <Column editable="true" title="id d&apos;utilisateur" type="java.lang.Object"/>
+                    <Column editable="true" title="utilisateur" type="java.lang.Object"/>
                     <Column editable="true" title="image" type="java.lang.Object"/>
                   </Table>
                 </Property>

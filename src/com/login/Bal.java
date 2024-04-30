@@ -12,11 +12,13 @@ import java.sql.SQLException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
+
 /**
  *
  * @author hp
  */
 public class Bal {
+
     public static void insertdatasignup(Bean obj ){
         
         try{
@@ -36,8 +38,7 @@ public class Bal {
                     }
     }
     
-    
-    
+   
     public static boolean checklogin(String email , String mdp){
         boolean b = false ; 
         try{

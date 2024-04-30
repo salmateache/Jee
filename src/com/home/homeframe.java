@@ -7,12 +7,25 @@ package com.home;
 import com.login.Bal;
 import com.login.Bean;
 import com.login.loginframe;
+import com.sun.jdi.connect.spi.Connection;
 import java.io.File;
 import java.util.Date;
 import java.util.List;
 import java.util.Vector;
 import javax.swing.JFileChooser;
 import javax.swing.table.DefaultTableModel;
+import com.database.DB;
+import static com.database.DB.con;
+import com.login.Bean;
+import java.util.ArrayList;
+import java.util.List;
+import javax.swing.JOptionPane;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+
+
+import java.sql.DriverManager;
+import java.sql.ResultSet;
 
 /**
  *
@@ -28,22 +41,43 @@ public class homeframe extends javax.swing.JFrame {
         load();
     }
 
-   public void loadtable(List<homeBean> list){
-       DefaultTableModel dm = (DefaultTableModel)jTable1.getModel();
-       dm.setRowCount(0);
-       for(homeBean bean : list){
-           Vector v = new Vector() ;
-           v.add(bean.getId_poste());
-           v.add(bean.getTexte());
-           v.add(bean.getDate());
-           v.add(bean.getId_utilisateurs());
-           v.add(bean.getChemin_img());
-           dm.addRow(v);
-           
-       }
+  public void loadtable(List<homeBean> list) {
+        DefaultTableModel dm = (DefaultTableModel) jTable1.getModel();
+        dm.setRowCount(0);
+      String url = "jdbc:mysql://localhost:3307/jeeprojet";
+        String user = "root";
+        String mdp = "";
+        try{
+            con = DriverManager.getConnection(url ,user,mdp);
+            String sql = "SELECT email FROM utilisateurs WHERE id = ?";
+            try (PreparedStatement statement = con.prepareStatement(sql)) {
+                for (homeBean bean : list) {
+                    Vector v = new Vector();
+                    v.add(bean.getId_poste());
+                    v.add(bean.getTexte());
+                    v.add(bean.getDate());
+                    
+                    // Récupération de l'e-mail de l'utilisateur correspondant à id_utilisateurs
+                    statement.setInt(1, bean.getId_utilisateurs());
+                    try (ResultSet resultSet = statement.executeQuery()) {
+                        if (resultSet.next()) {
+                            String emailUtilisateur = resultSet.getString("email");
+                            v.add(emailUtilisateur);
+                        } else {
+                            v.add(""); // Si aucun e-mail n'est trouvé, vous pouvez ajouter une chaîne vide ou gérer autrement
+                        }
+                    }
+
+                    v.add(bean.getChemin_img());
+                    dm.addRow(v);
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
    
-       
-   }
+
     
    public void load(){
        homeBal bal = new homeBal();
@@ -282,7 +316,7 @@ public class homeframe extends javax.swing.JFrame {
 
             },
             new String [] {
-                "id", "texte", "date", "id d'utilisateur", "image"
+                "id", "texte", "date", "utilisateur", "image"
             }
         ));
         jScrollPane3.setViewportView(jTable1);
@@ -334,15 +368,31 @@ public class homeframe extends javax.swing.JFrame {
     }//GEN-LAST:event_deleteActionPerformed
 
     private void addActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addActionPerformed
-        this.hide();
-        String texte=text.getText(); 
-        String file=fileimg.getText();
-        Date temps=date.getDate();
-       
+                                 
+    this.hide();
+    String texte = text.getText(); 
+    String file = fileimg.getText();
+    Date temps = date.getDate();
+    homeBal B = new homeBal();
+    
+    // Récupérer l'utilisateur connecté
+    Bean utilisateurConnecte = B.getUtilisateurConnecte(); // Supposons que cette méthode récupère l'utilisateur connecté
+    
+    // Vérifier si un utilisateur est connecté
+    if (utilisateurConnecte != null) {
+        // Si un utilisateur est connecté, récupérer son e-mail et créer un homeBean
+        int emailUtilisateurConnecte = B.Emailgetter(utilisateurConnecte); // Supposons que cette méthode récupère l'e-mail de l'utilisateur connecté
+        homeBean h = new homeBean(1, texte, temps, emailUtilisateurConnecte, file);
         
-       homeBean h=new homeBean(1,texte,temps,1,file);
-       homeBal B=new homeBal();
-       B.insert(h);
+        // Insérer le homeBean dans la base de données
+        B.insert(h);
+    } else {
+        // Si aucun utilisateur n'est connecté, gérer l'erreur ou afficher un message à l'utilisateur
+        System.out.println("Aucun utilisateur n'est connecté.");
+        // Affichez un message d'erreur à l'utilisateur ou effectuez toute autre action appropriée
+    }
+
+
     }//GEN-LAST:event_addActionPerformed
 
     private void clearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clearActionPerformed
