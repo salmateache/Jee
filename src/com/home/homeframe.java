@@ -360,20 +360,28 @@ public class homeframe extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void deleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteActionPerformed
-        this.hide();
-        String texte=text.getText(); 
-        String file=fileimg.getText();
-        Date temps=date.getDate();
-       
-        
-       homeBean h=new homeBean(0,texte,temps,1,file);
-       homeBal B=new homeBal();
-       B.delete(h);
+        int row = jTable1.getSelectedRow();
+      if(row<0){
+      JOptionPane.showMessageDialog(null,"please select a row from the table");
+      }
+      else{
+          int id = (int) jTable1.getValueAt(row,0);
+          homeBal Home=new homeBal();
+    String texte = text.getText(); 
+    String file = fileimg.getText();
+    Date temps = date.getDate();
+    homeBal B = new homeBal();
+    homeBean bean = new homeBean(id,texte,temps,0,file);
+    homeBal bal= new homeBal();
+    bal.delete(bean);
+    load();
+      }
+      
     }//GEN-LAST:event_deleteActionPerformed
 
     private void addActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addActionPerformed
                                  
-    this.hide();
+    
     String texte = text.getText(); 
     String file = fileimg.getText();
     Date temps = date.getDate();
@@ -387,12 +395,30 @@ public class homeframe extends javax.swing.JFrame {
         
         // Insérer le homeBean dans la base de données
         B.insert(h);
+        load();
     
 
     }//GEN-LAST:event_addActionPerformed
 
     private void clearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clearActionPerformed
-        // TODO add your handling code here:
+   
+        int row = jTable1.getSelectedRow();
+      if(row<0){
+      JOptionPane.showMessageDialog(null,"please select a row from the table");
+      }
+      else{
+          int id = (int) jTable1.getValueAt(row,0);
+          homeBal Home=new homeBal();
+    String texte = text.getText(); 
+    String file = fileimg.getText();
+    Date temps = date.getDate();
+    homeBal B = new homeBal();
+    homeBean bean = new homeBean(id,texte,temps,0,file);
+    homeBal bal= new homeBal();
+    bal.clear(bean);
+    load();
+    }
+
     }//GEN-LAST:event_clearActionPerformed
 
     private void updateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateActionPerformed

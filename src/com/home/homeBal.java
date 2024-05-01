@@ -68,16 +68,16 @@ public class homeBal {
         /* */}
     }
     
-    public static void delete(homeBean B){
+   public static void delete(homeBean B){
                 try{
          
-            String query = "DELETE FROM poste WHERE id = ?";
+            String query = "DELETE FROM poste WHERE id_poste = ?";
             PreparedStatement preparedStatement = con.prepareStatement(query);
             preparedStatement.setInt(1,B.getId_poste());
             preparedStatement.executeUpdate();
 
           
-            System.out.println("poste supprimé avec succès !");
+           JOptionPane.showMessageDialog(null,"Le poste est supprimé");
         }
         catch (Exception e ){
             JOptionPane.showMessageDialog(null,"erreur"+e);
@@ -102,7 +102,24 @@ PreparedStatement preparedStatement = con.prepareStatement(sql);
                         JOptionPane.showMessageDialog(null,"poste est  modifié avec succés");
              
             
-        }        catch (Exception e ){
+        }  
+            catch (Exception e ){
+            JOptionPane.showMessageDialog(null,"erreur"+e);
+        /* */}           
+        
+    }
+    public static void clear(homeBean B){
+                try{
+         
+            String query = "UPDATE poste SET texte = NULL, date = NULL, id_utilisateur = NULL, chemin_image = NULL WHERE id_poste = ?";
+            PreparedStatement preparedStatement = con.prepareStatement(query);
+            preparedStatement.setInt(1,B.getId_poste());
+            preparedStatement.executeUpdate();
+
+          
+           JOptionPane.showMessageDialog(null,"Le poste est vidé");
+        }
+            catch (Exception e ){
             JOptionPane.showMessageDialog(null,"erreur"+e);
         /* */}           
         
