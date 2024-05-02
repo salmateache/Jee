@@ -68,21 +68,77 @@ public class homeBal {
         /* */}
     }
     
-    public static void delete(homeBean B){
+ public static void delete(homeBean B){
                 try{
          
-            String query = "DELETE FROM poste WHERE id = ?";
+            String query = "DELETE FROM poste WHERE id_poste = ?";
             PreparedStatement preparedStatement = con.prepareStatement(query);
             preparedStatement.setInt(1,B.getId_poste());
             preparedStatement.executeUpdate();
 
           
-            System.out.println("poste supprimé avec succès !");
+           JOptionPane.showMessageDialog(null,"Le poste est supprimé");
         }
         catch (Exception e ){
             JOptionPane.showMessageDialog(null,"erreur"+e);
-        /* */}
     }
+ }
+ 
+ public static void update(homeBean B) {
+    try {
+        String query = "UPDATE poste SET texte = ?, date = ?, id_utilisateur = null, chemin_image = ? WHERE id_poste = ?";
+        PreparedStatement preparedStatement = con.prepareStatement(query);
+        
+        // Remplacer les paramètres "?" dans la requête SQL par les valeurs de l'objet homeBean B
+        preparedStatement.setString(1, B.getTexte());
+        preparedStatement.setDate(2, new java.sql.Date(B.getDate().getTime())); // Convertir la date en java.sql.Date
+       
+        preparedStatement.setString(3, B.getChemin_img());
+        preparedStatement.setInt(4, B.getId_poste());
+
+        // Exécuter la requête SQL
+        preparedStatement.executeUpdate();
+
+        JOptionPane.showMessageDialog(null, "Le poste est mis à jour avec succès");
+    } catch (Exception e) {
+        JOptionPane.showMessageDialog(null, "Erreur lors de la mise à jour du poste : " + e.getMessage());
+    }
+}
+
+    public homeBean  returnRow(int id){
+  
+  homeBean bean = null; // Initialisation à null
+    
+    try {
+        String query = "SELECT * FROM poste WHERE id_poste = ?";
+        PreparedStatement preparedStatement = con.prepareStatement(query);
+        preparedStatement.setInt(1, id); // Remplacer le premier paramètre par le paramètre id
+        
+        ResultSet resultSet = preparedStatement.executeQuery();
+        
+        if (resultSet.next()) {
+            int postId = resultSet.getInt("id_poste");
+            String text = resultSet.getString("texte");
+            Date date = resultSet.getDate("date");
+            int userId = resultSet.getInt("id_utilisateur");
+            String imagePath = resultSet.getString("chemin_image");
+            
+            // Créer un nouvel objet homeBean avec les données de la ligne
+            bean = new homeBean(postId, text, date, userId, imagePath);
+        }
+
+        // Fermer les ressources JDBC
+        resultSet.close();
+        preparedStatement.close();
+    } catch (SQLException ex) {
+        ex.printStackTrace(); // Afficher l'erreur
+        // Gérer l'exception, par exemple, en affichant un message à l'utilisateur ou en lançant une exception
+    }
+    
+    return bean;
+    }
+    
+    
 
 private static Bean utilisateurConnecte; // Variable statique pour stocker l'utilisateur connecté
 
@@ -90,6 +146,25 @@ private static Bean utilisateurConnecte; // Variable statique pour stocker l'uti
     public static void setUtilisateurConnecte(Bean utilisateur) {
         utilisateurConnecte = utilisateur;
     }
+    
+    
+    
+public static void clear(homeBean B){
+                try{
+         
+            String query = "UPDATE poste SET texte = NULL, date = NULL, id_utilisateur = NULL, chemin_image = NULL WHERE id_poste = ?";
+            PreparedStatement preparedStatement = con.prepareStatement(query);
+            preparedStatement.setInt(1,B.getId_poste());
+            preparedStatement.executeUpdate();
+
+          
+           JOptionPane.showMessageDialog(null,"Le poste est vidé");
+        }
+    
+        catch (Exception e ){
+            JOptionPane.showMessageDialog(null,"erreur"+e);
+        /* */}
+}
 
     // Méthode pour récupérer l'utilisateur connecté
     public static Bean getUtilisateurConnecte() {

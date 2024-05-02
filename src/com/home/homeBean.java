@@ -4,13 +4,17 @@
  */
 package com.home;
 
+import java.io.Serializable;
 import java.util.Date;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
  * @author USER
  */
-public class homeBean {
+@XmlRootElement(name = "homeBean")
+public class homeBean implements Serializable {
     private String texte;
     private Date date ;
     private int id_utilisateurs ;
@@ -24,6 +28,10 @@ public class homeBean {
         this.chemin_img = chemin_img;
         this.id_poste = id_poste;
     }
+      public homeBean() {
+ 
+    }
+    @XmlElement
 
     public String getTexte() {
         return texte;
@@ -32,6 +40,7 @@ public class homeBean {
     public void setTexte(String texte) {
         this.texte = texte;
     }
+    @XmlElement
 
     public Date getDate() {
         return date;
@@ -40,6 +49,7 @@ public class homeBean {
     public void setDate(Date date) {
         this.date = date;
     }
+    @XmlElement
 
     public int getId_utilisateurs() {
         return id_utilisateurs;
@@ -48,6 +58,7 @@ public class homeBean {
     public void setId_utilisateurs(int id_utilisateurs) {
         this.id_utilisateurs = id_utilisateurs;
     }
+    @XmlElement
 
     public String getChemin_img() {
         return chemin_img;
@@ -56,6 +67,7 @@ public class homeBean {
     public void setChemin_img(String chemin_img) {
         this.chemin_img = chemin_img;
     }
+    @XmlElement
 
     public int getId_poste() {
         return id_poste;
