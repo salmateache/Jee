@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/XML/XMLDocument.xml to edit this template
+-->
+
+<homeBean>
+<texte>Exemple de texte</texte>
+<date>2024-05-01T12:00:00</date>
+<id_utilisateurs>123</id_utilisateurs>
+<chemin_img>chemin/vers/image.jpg</chemin_img>
+<id_poste>456</id_poste>
+</homeBean> 
+
